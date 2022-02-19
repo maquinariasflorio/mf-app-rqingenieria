@@ -1,0 +1,19 @@
+.mf-page-report-daily {
+    .v-text-field__details {
+        display: none;
+    }
+
+    .info-row {
+        margin-top: $space-md;
+    }
+
+    .info-card {
+        padding-top: $space-xs;
+        padding-bottom: $space-xs;
+
+        .v-card__text {
+            padding-top: $space-sm + 2px;
+            padding-bottom: $space-sm + 2px;
+        }
+    }
+}

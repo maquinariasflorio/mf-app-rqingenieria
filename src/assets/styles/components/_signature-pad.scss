@@ -1,0 +1,54 @@
+.mf-component-signature-pad {
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    padding-top: $space-sm;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: $space-sm + 12px;
+
+    .wrapper {
+        padding: $space-sm;
+        width: 100%;
+        height: 200px;
+        border: solid 1px $color-primary;
+        border-radius: 4px;
+
+        label {
+            position: absolute;
+            left: 0;
+            right: auto;
+            line-height: 20px;
+            transform: translateY(-18px) scale(0.75);
+            max-width: 133%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            top: 6px;
+            white-space: nowrap;
+            transform-origin: top left;
+            height: 20px;
+            line-height: 20px;
+            letter-spacing: normal;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &-disabled {
+        color: $color-disabled;
+
+        .wrapper {
+            border-style: dashed;
+            border-color: currentColor;
+
+            label {
+                color: currentColor;
+            }
+        }
+    }
+}

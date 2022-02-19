@@ -1,0 +1,53 @@
+html {
+    height: 100%;
+    overflow: auto !important;
+
+    body {
+        margin: 0;
+
+        &,
+        #__nuxt,
+        #__layout {
+            height: 100%;
+        }
+    }
+}
+
+
+.v-btn__content {
+    width: 100%;
+    white-space: normal;
+}
+
+.v-form {
+    .v-input {
+        margin-top: $space-sm !important;
+    }
+
+    .v-btn {
+        margin-top: $space-md;
+    }
+}
+
+.v-data-table {
+    border-radius: 0 !important;
+
+    &__expanded__content {
+        box-shadow: none !important;
+        background-color: #ebf3ffad;
+    }
+}
+
+.mf-inner-table {
+    padding: $space-xs !important;
+
+    .v-data-table {
+        width: 100%;
+    }
+}
+
+.mf-to-uppercase {
+    input {
+        text-transform: uppercase;
+    }
+}

@@ -1,0 +1,40 @@
+.mf-component-booking-form-dialog {
+    &-card {
+        border-radius: 0 !important;
+
+        .v-card__progress {
+            height: 4px;
+        }
+
+        .v-card__title {
+            padding: 0 !important;
+        }
+
+        .v-card__text {
+            padding-top: 20px !important;
+        }
+
+        .v-expansion-panel-header {
+            .v-btn {
+                margin: 0 $space-md 0 0;
+            }
+        }
+
+        .sub-title {
+            margin-top: $space-md;
+        }
+
+        .v-item-group {
+            margin: $space-md 0;
+        }
+
+        .receiver-row,
+        .machinery-row,
+        .load-row {
+            .col {
+                padding-top: 0;
+                padding-bottom: $space-sm;
+            }
+        }
+    }
+}

@@ -1,0 +1,26 @@
+.mf-layout-default {
+    .v-application--wrap {
+        & > .v-overlay,
+        & > .mf-component-navbar {
+            position: fixed !important;
+        }
+    }
+
+    .v-main__wrap {
+        display: flex;
+        flex-direction: column;
+
+        .mf-component-app-bar {
+            flex-grow: unset;
+        }
+
+        & > .mf-page-wrapper {
+            flex-grow: 1;
+            position: relative;
+
+            & > .container {
+                padding: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+.mf-page-machinery-maintenance {
+    .maintenance-card {
+        .v-timeline:before {
+            left: calc(27px - 1px) !important;
+        }
+
+        .v-timeline-item__divider {
+            min-width: 55px;
+
+            .v-timeline-item__dot {
+                z-index: 0;
+            }
+        }
+
+        .v-timeline-item__body {
+            max-width: calc(100% - 55px);
+        }
+    }
+
+    .v-data-iterator {
+        & > div {
+            &:not(.cards) {
+                margin-top: $space-lg;
+                text-align: center;
+            }
+        }
+    }
+}

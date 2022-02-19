@@ -1,0 +1,325 @@
+html {
+  height: 100%;
+  overflow: auto !important;
+}
+html body {
+  margin: 0;
+}
+html body,
+html body #__nuxt,
+html body #__layout {
+  height: 100%;
+}
+
+.v-btn__content {
+  width: 100%;
+  white-space: normal;
+}
+
+.v-form .v-input {
+  margin-top: 8px !important;
+}
+.v-form .v-btn {
+  margin-top: 16px;
+}
+
+.v-data-table {
+  border-radius: 0 !important;
+}
+.v-data-table__expanded__content {
+  box-shadow: none !important;
+  background-color: #ebf3ffad;
+}
+
+.mf-inner-table {
+  padding: 4px !important;
+}
+.mf-inner-table .v-data-table {
+  width: 100%;
+}
+
+.mf-to-uppercase input {
+  text-transform: uppercase;
+}
+
+.mf-layout {
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.mf-layout .v-application--wrap {
+  min-height: 100%;
+}
+.mf-layout .mf-page {
+  height: 100%;
+}
+.mf-layout .mf-global-snackbar {
+  z-index: 1000;
+}
+.mf-layout .mf-global-snackbar .v-snack__wrapper {
+  position: sticky;
+  top: 8px;
+}
+
+.mf-layout-login .mf-page {
+  height: 100%;
+}
+
+.mf-layout-default .v-application--wrap > .v-overlay, .mf-layout-default .v-application--wrap > .mf-component-navbar {
+  position: fixed !important;
+}
+.mf-layout-default .v-main__wrap {
+  display: flex;
+  flex-direction: column;
+}
+.mf-layout-default .v-main__wrap .mf-component-app-bar {
+  flex-grow: unset;
+}
+.mf-layout-default .v-main__wrap > .mf-page-wrapper {
+  flex-grow: 1;
+  position: relative;
+}
+.mf-layout-default .v-main__wrap > .mf-page-wrapper > .container {
+  padding: 0;
+}
+
+.mf-page-login .container-alert {
+  padding: 0 12px;
+}
+.mf-page-login .input-password {
+  margin-top: 8px;
+}
+.mf-page-login .btn-login,
+.mf-page-login .btn-recover-password {
+  margin-top: 16px;
+}
+
+.mf-page-recover-password .container-alert {
+  padding: 0 12px;
+}
+.mf-page-recover-password .instructions {
+  text-align: justify;
+}
+.mf-page-recover-password .btn-get-code,
+.mf-page-recover-password .btn-back {
+  margin-top: 16px;
+}
+
+.mf-page-recover-password-confirm .container-alert {
+  padding: 0 12px;
+}
+.mf-page-recover-password-confirm .help p {
+  margin-bottom: 0;
+  text-align: justify;
+}
+.mf-page-recover-password-confirm .input-confirm-password,
+.mf-page-recover-password-confirm .input-code {
+  margin-top: 8px;
+}
+.mf-page-recover-password-confirm .btn-change-password,
+.mf-page-recover-password-confirm .btn-back {
+  margin-top: 16px;
+}
+
+.mf-page-machinery-maintenance .maintenance-card .v-timeline:before {
+  left: calc(27px - 1px) !important;
+}
+.mf-page-machinery-maintenance .maintenance-card .v-timeline-item__divider {
+  min-width: 55px;
+}
+.mf-page-machinery-maintenance .maintenance-card .v-timeline-item__divider .v-timeline-item__dot {
+  z-index: 0;
+}
+.mf-page-machinery-maintenance .maintenance-card .v-timeline-item__body {
+  max-width: calc(100% - 55px);
+}
+.mf-page-machinery-maintenance .v-data-iterator > div:not(.cards) {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.mf-page-report-equipment .mf-component-date-picker .v-text-field__details {
+  display: none;
+}
+
+.mf-page-report-daily .v-text-field__details {
+  display: none;
+}
+.mf-page-report-daily .info-row {
+  margin-top: 16px;
+}
+.mf-page-report-daily .info-card {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.mf-page-report-daily .info-card .v-card__text {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.mf-component-logo .row > div:first-child {
+  padding: 0;
+}
+.mf-component-logo .row > div:first-child img {
+  width: 100%;
+}
+
+.mf-component-app-bar {
+  position: sticky !important;
+  top: 0;
+  z-index: 1;
+}
+.mf-component-app-bar .app-bar-title {
+  color: white;
+}
+
+.mf-component-navbar-item .v-list-group__items {
+  background-color: #ebf3ffad;
+}
+
+.mf-component-user-form-dialog-card {
+  border-radius: 0 !important;
+}
+.mf-component-user-form-dialog-card .v-card__progress {
+  height: 4px;
+}
+.mf-component-user-form-dialog-card .v-card__title {
+  padding: 0 !important;
+}
+.mf-component-user-form-dialog-card .v-card__text {
+  padding-top: 20px !important;
+}
+
+.mf-component-signature-pad {
+  position: relative;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+.mf-component-signature-pad .wrapper {
+  padding: 8px;
+  width: 100%;
+  height: 200px;
+  border: solid 1px #003249;
+  border-radius: 4px;
+}
+.mf-component-signature-pad .wrapper label {
+  position: absolute;
+  left: 0;
+  right: auto;
+  line-height: 20px;
+  transform: translateY(-18px) scale(0.75);
+  max-width: 133%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 6px;
+  white-space: nowrap;
+  transform-origin: top left;
+  height: 20px;
+  line-height: 20px;
+  letter-spacing: normal;
+}
+.mf-component-signature-pad .wrapper canvas {
+  width: 100%;
+  height: 100%;
+}
+.mf-component-signature-pad-disabled {
+  color: rgba(0, 0, 0, 0.38);
+}
+.mf-component-signature-pad-disabled .wrapper {
+  border-style: dashed;
+  border-color: currentColor;
+}
+.mf-component-signature-pad-disabled .wrapper label {
+  color: currentColor;
+}
+
+.mf-component-client-form-dialog-card {
+  border-radius: 0 !important;
+}
+.mf-component-client-form-dialog-card .v-card__progress {
+  height: 4px;
+}
+.mf-component-client-form-dialog-card .v-card__title {
+  padding: 0 !important;
+}
+.mf-component-client-form-dialog-card .v-card__text {
+  padding-top: 20px !important;
+}
+.mf-component-client-form-dialog-card .v-expansion-panel-header .v-btn {
+  margin: 0 16px 0 0;
+}
+.mf-component-client-form-dialog-card .sub-title {
+  margin-top: 16px;
+}
+.mf-component-client-form-dialog-card .v-item-group {
+  margin: 16px 0;
+}
+.mf-component-client-form-dialog-card .receiver-row .col,
+.mf-component-client-form-dialog-card .load-row .col {
+  padding-top: 0;
+  padding-bottom: 8px;
+}
+
+.mf-component-equipment-form-dialog-card {
+  border-radius: 0 !important;
+}
+.mf-component-equipment-form-dialog-card .v-card__progress {
+  height: 4px;
+}
+.mf-component-equipment-form-dialog-card .v-card__title {
+  padding: 0 !important;
+}
+.mf-component-equipment-form-dialog-card .v-card__text {
+  padding-top: 20px !important;
+}
+
+.mf-component-booking-form-dialog-card {
+  border-radius: 0 !important;
+}
+.mf-component-booking-form-dialog-card .v-card__progress {
+  height: 4px;
+}
+.mf-component-booking-form-dialog-card .v-card__title {
+  padding: 0 !important;
+}
+.mf-component-booking-form-dialog-card .v-card__text {
+  padding-top: 20px !important;
+}
+.mf-component-booking-form-dialog-card .v-expansion-panel-header .v-btn {
+  margin: 0 16px 0 0;
+}
+.mf-component-booking-form-dialog-card .sub-title {
+  margin-top: 16px;
+}
+.mf-component-booking-form-dialog-card .v-item-group {
+  margin: 16px 0;
+}
+.mf-component-booking-form-dialog-card .receiver-row .col,
+.mf-component-booking-form-dialog-card .machinery-row .col,
+.mf-component-booking-form-dialog-card .load-row .col {
+  padding-top: 0;
+  padding-bottom: 8px;
+}
+
+.mf-component-machinery-job-registry-dialog-card {
+  border-radius: 0 !important;
+}
+.mf-component-machinery-job-registry-dialog-card .v-card__progress {
+  height: 4px;
+}
+.mf-component-machinery-job-registry-dialog-card .v-card__title {
+  padding: 0 !important;
+}
+.mf-component-machinery-job-registry-dialog-card .v-card__text {
+  padding-top: 20px !important;
+}
+
+/*# sourceMappingURL=styles.css.map */

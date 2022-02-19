@@ -1,0 +1,89 @@
+name: cd_qat
+
+on:
+  push:
+    branches:
+      - testing
+
+jobs:
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - id: "auth"
+        uses: "google-github-actions/auth@v0"
+        with:
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
+
+      # Setup gcloud CLI
+      - uses: google-github-actions/setup-gcloud@v0
+
+      # Build docker image
+      - name: Build Docker Image
+        run: |-
+          docker build \
+          -t us.gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.SERVICE_NAME }}:${{ github.sha }} \
+          --build-arg NUXT_ENV_API_HOST="${{ secrets.NUXT_ENV_API_HOST }}" \
+          --build-arg NUXT_ENV_API_HOST_WS="${{ secrets.NUXT_ENV_API_HOST_WS }}" \
+          --build-arg NUXT_ENV_OFFICE_EMAIL="${{ secrets.NUXT_ENV_OFFICE_EMAIL }}" \
+          --build-arg NUXT_ENV_LOGO_BASE64="${{ secrets.NUXT_ENV_LOGO_BASE64 }}" \
+          --build-arg NUXT_ENV_RAZON_SOCIAL="${{ secrets.NUXT_ENV_RAZON_SOCIAL }}" \
+          --build-arg NUXT_ENV_GIRO="${{ secrets.NUXT_ENV_GIRO }}" \
+          --build-arg NUXT_ENV_DIRECCION="${{ secrets.NUXT_ENV_DIRECCION }}" \
+          --build-arg NUXT_ENV_RUT="${{ secrets.NUXT_ENV_RUT }}" \
+          --build-arg NUXT_ENV_FONO="${{ secrets.NUXT_ENV_FONO }}" \
+          --build-arg NUXT_ENV_CONTACTO_EMAIL="${{ secrets.NUXT_ENV_CONTACTO_EMAIL }}" \
+          --build-arg NUXT_ENV_CEO_SIGNATURE="${{ secrets.NUXT_ENV_CEO_SIGNATURE }}" \
+          --build-arg NUXT_ENV_CEO_NAME="${{ secrets.NUXT_ENV_CEO_NAME }}" \
+          --build-arg NUXT_ENV_CEO_PROFESION="${{ secrets.NUXT_ENV_CEO_PROFESION }}" .
+      # Configure docker to use the gcloud command-line tool as a credential helper
+      - run: |
+          gcloud auth configure-docker -q
+      # Push image to Google Container Registry
+      - name: Push Docker Image to GCR
+        run: |-
+          docker push us.gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.SERVICE_NAME }}:${{ github.sha }}
+
+  deploy:
+    name: Deploy Image to Cloud Run
+    runs-on: ${{ matrix.os }}
+    needs: build
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - id: "auth"
+        uses: "google-github-actions/auth@v0"
+        with:
+          credentials_json: "${{ secrets.GCP_SA_KEY }}"
+
+      # extract branch name
+      - name: Extract branch name
+        shell: bash
+        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF##*/})" >> $GITHUB_ENV
+
+      - name: Deploy to Cloud Run
+        run: |-
+          gcloud run deploy ${{ secrets.SERVICE_NAME }}-${{ env.BRANCH_NAME }} \
+            --region ${{ secrets.SERVICE_REGION }} \
+            --image us.gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.SERVICE_NAME }}:${{ github.sha }} \
+            --platform managed \
+            --set-env-vars '^;;^NUXT_ENV_API_HOST=${{ secrets.NUXT_ENV_API_HOST }};;
+            NUXT_ENV_API_HOST_WS=${{ secrets.NUXT_ENV_API_HOST_WS }};;
+            NUXT_ENV_OFFICE_EMAIL=${{ secrets.NUXT_ENV_OFFICE_EMAIL }};;
+            NUXT_ENV_LOGO_BASE64=${{ secrets.NUXT_ENV_LOGO_BASE64 }};;
+            NUXT_ENV_RAZON_SOCIAL=${{ secrets.NUXT_ENV_RAZON_SOCIAL }};;
+            NUXT_ENV_GIRO=${{ secrets.NUXT_ENV_GIRO }};;
+            NUXT_ENV_DIRECCION=${{ secrets.NUXT_ENV_DIRECCION }};;
+            NUXT_ENV_RUT=${{ secrets.NUXT_ENV_RUT }};;
+            NUXT_ENV_FONO=${{ secrets.NUXT_ENV_FONO }};;
+            NUXT_ENV_CONTACTO_EMAIL=${{ secrets.NUXT_ENV_CONTACTO_EMAIL }};;
+            NUXT_ENV_CEO_SIGNATURE=${{ secrets.NUXT_ENV_CEO_SIGNATURE }};;
+            NUXT_ENV_CEO_NAME=${{ secrets.NUXT_ENV_CEO_NAME }};;
+            NUXT_ENV_CEO_PROFESION=${{ secrets.NUXT_ENV_CEO_PROFESION }}'

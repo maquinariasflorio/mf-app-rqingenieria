@@ -1,0 +1,23 @@
+@import "global/spaces";
+@import "global/colors";
+@import "global/others";
+
+@import "layouts/layout";
+@import "layouts/login";
+@import "layouts/default";
+
+@import "pages/login";
+@import "pages/recover-password";
+@import "pages/machinery-maintenance";
+@import "pages/report-equipment";
+@import "pages/report-daily";
+
+@import "components/logo";
+@import "components/app-bar";
+@import "components/navbar-item";
+@import "components/user-form-dialog";
+@import "components/signature-pad";
+@import "components/client-form-dialog";
+@import "components/equipment-form-dialog";
+@import "components/booking-form-dialog";
+@import "components/machinery-job-registry-dialog";

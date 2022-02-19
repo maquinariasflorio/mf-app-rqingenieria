@@ -1,0 +1,24 @@
+.mf-layout {
+  position: absolute !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .v-application--wrap {
+    min-height: 100%;
+  }
+
+  .mf-page {
+    height: 100%;
+  }
+
+  .mf-global-snackbar {
+    z-index: 1000;
+
+    .v-snack__wrapper {
+        position: sticky;
+        top: 8px;
+    }
+  }
+}
