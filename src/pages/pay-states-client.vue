@@ -619,7 +619,11 @@ export default {
             let headers = [ 'Fecha', 'Obra', 'Nro. Reporte', 'Equipo', 'Operador', 'Horómetro', 'Mínimas', 'A Facturar', 'Tarifa (incluye petroleo)', 'Cobro' ]
             addExcelRow(workbook, otherInternWorksheet, headers, { isHeader: true } )
 
+            let totalFacture = 0
+
             data.intern.OTHER.forEach( (item) => {
+
+                totalFacture += item.toFacture
 
                 const { row } = addExcelRow(workbook, otherInternWorksheet, [
                     item.date,
@@ -641,6 +645,11 @@ export default {
                 } )
 
             } )
+
+            const { row: totalFactureRow } = addExcelRow(workbook, otherInternWorksheet, [
+                '', '', '', '', '', '', '', '', 'Total Horas', totalFacture,
+            ] )
+            setTotalStyles(totalFactureRow)
 
             const { row: netoRow } = addExcelRow(workbook, otherInternWorksheet, [
                 '', '', '', '', '', '', '', '', 'Neto', data.intern.totalOther,
@@ -817,7 +826,11 @@ export default {
                 headers = [ 'Fecha', 'Obra', 'Nro. Reporte', 'Equipo', 'Operador', 'Horómetro', 'Mínimas', 'A Facturar', 'Tarifa (incluye petroleo)', 'Cobro' ]
                 addExcelRow(workbook, otherExternWorksheet, headers, { isHeader: true } )
 
+                let totalFacture = 0
+
                 data.extern.OTHER.forEach( (item) => {
+
+                    totalFacture += item.toFacture
 
                     const { row } = addExcelRow(workbook, otherExternWorksheet, [
                         item.date,
@@ -839,6 +852,11 @@ export default {
                     } )
 
                 } )
+
+                const { row: totalFactureRow } = addExcelRow(workbook, otherExternWorksheet, [
+                    '', '', '', '', '', '', '', '', 'Total Horas', totalFacture,
+                ] )
+                setTotalStyles(totalFactureRow)
 
                 const { row: netoRow } = addExcelRow(workbook, otherExternWorksheet, [
                     '', '', '', '', '', '', '', '', 'Neto', data.extern.totalOther,

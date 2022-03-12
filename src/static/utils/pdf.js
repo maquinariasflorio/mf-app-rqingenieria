@@ -780,7 +780,11 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                 ],
             } )
 
+            let totalHours = 0
+
             const parsedData = data.intern.OTHER.map( (item) => {
+
+                totalHours += item.toFacture
 
                 return [
                     { text: item.date, style: 'tableData' },
@@ -818,6 +822,18 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                             { text: 'Cobro', style: 'tableHeader' },
                         ],
                         ...parsedData,
+                        [
+                            { text: 'Total Horas', style: 'tableHeader', alignment: 'right', colSpan: 9 },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: totalHours, style: 'tableData' },
+                        ],
                         [
                             { text: 'Neto', style: 'tableHeader', alignment: 'right', colSpan: 9 },
                             { text: '' },
@@ -1173,7 +1189,11 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                 ],
             } )
 
+            let totalHours = 0
+
             const parsedData = data.extern.OTHER.map( (item) => {
+
+                totalHours += item.toFacture
 
                 return [
                     { text: item.date, style: 'tableData' },
@@ -1211,6 +1231,18 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                             { text: 'Cobro', style: 'tableHeader' },
                         ],
                         ...parsedData,
+                        [
+                            { text: 'Total Horas', style: 'tableHeader', alignment: 'right', colSpan: 9 },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: '' },
+                            { text: totalHours, style: 'tableData' },
+                        ],
                         [
                             { text: 'Neto', style: 'tableHeader', alignment: 'right', colSpan: 9 },
                             { text: '' },
