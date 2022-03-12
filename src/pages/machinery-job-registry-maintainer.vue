@@ -203,6 +203,13 @@ export default {
                     groupable  : false,
                 },
                 {
+                    text       : 'Total Viajes',
+                    value      : 'totalTravels',
+                    sortable   : true,
+                    filterable : true,
+                    groupable  : false,
+                },
+                {
                     text       : 'Firmado?',
                     value      : 'signature',
                     sortable   : true,
