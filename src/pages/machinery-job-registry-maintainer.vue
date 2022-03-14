@@ -154,6 +154,13 @@ export default {
 
             headers: [
                 {
+                    text       : 'Folio',
+                    value      : 'folio',
+                    sortable   : true,
+                    filterable : true,
+                    groupable  : false,
+                },
+                {
                     text       : 'Fecha',
                     value      : 'date',
                     sortable   : true,
