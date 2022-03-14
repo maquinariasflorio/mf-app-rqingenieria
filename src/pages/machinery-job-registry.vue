@@ -53,7 +53,7 @@
                               @change="onEquipmentChange"
                     />
 
-                    <v-btn color="primary" @click="step++">
+                    <v-btn color="primary" @click="step++" :disabled="loading">
                         Continuar
                     </v-btn>
 
@@ -183,11 +183,11 @@
                     />
 
 
-                    <v-btn color="primary" @click="step++">
+                    <v-btn color="primary" @click="step++" :disabled="loading">
                         Continuar
                     </v-btn>
 
-                    <v-btn text @click="step--">
+                    <v-btn text @click="step--" :disabled="loading">
                         Volver
                     </v-btn>
 
@@ -214,14 +214,14 @@
                     <mf-signature-pad ref="signaturePad"
                                       :label="$auth.user.role.name === 'operator' ? 'Firma Jefe de Obra' : 'Firma Operador'"
                                       :image.sync="formData.signature"
-                                      :disabled="!switchSignature"
+                                      :disabled="!switchSignature || loading"
                     />
 
-                    <v-btn color="primary" @click="submit">
+                    <v-btn color="primary" @click="submit" :disabled="loading">
                         Registrar
                     </v-btn>
 
-                    <v-btn text @click="step--">
+                    <v-btn text @click="step--" :disabled="loading">
                         Volver
                     </v-btn>
 
