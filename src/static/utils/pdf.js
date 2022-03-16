@@ -1375,7 +1375,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                             ],
                             ...parsedData,
                             [
-                                { text: 'Neto', style: 'tableHeader', alignment: 'right', colSpan: 9 },
+                                { text: 'Neto', style: 'tableHeader', alignment: 'right', colSpan: 8 },
                                 { text: '' },
                                 { text: '' },
                                 { text: '' },
@@ -1386,7 +1386,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                                 { text: totalTruck, style: 'tableData' },
                             ],
                             [
-                                { text: 'IVA', style: 'tableHeader', alignment: 'right', colSpan: 9 },
+                                { text: 'IVA', style: 'tableHeader', alignment: 'right', colSpan: 8 },
                                 { text: '' },
                                 { text: '' },
                                 { text: '' },
@@ -1397,7 +1397,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                                 { text: totalTruckIva, style: 'tableData' },
                             ],
                             [
-                                { text: 'Total', style: 'tableHeader', alignment: 'right', colSpan: 9 },
+                                { text: 'Total', style: 'tableHeader', alignment: 'right', colSpan: 8 },
                                 { text: '' },
                                 { text: '' },
                                 { text: '' },
