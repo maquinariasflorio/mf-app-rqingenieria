@@ -756,7 +756,7 @@ export default {
                             get64    : true,
                         } )
 
-                        this.$apollo.query( {
+                        await this.$apollo.query( {
                             query: gql`query sendJobRegistryByEmail($file: String!, $folio: String!, $receivers: [String!]!) {
                             sendJobRegistryByEmail(file: $file, folio: $folio, receivers: $receivers) {
                                 __typename,
