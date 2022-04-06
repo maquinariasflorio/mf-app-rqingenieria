@@ -616,7 +616,7 @@ export default {
             addExcelRow(workbook, otherInternWorksheet, [ 'INTERNOS' ], { isHeader: true, bordered: false } )
             addExcelRow(workbook, otherInternWorksheet, [ `Cliente: ${client}` ], { isHeader: true, bordered: false } )
 
-            let headers = [ 'Fecha', 'Obra', 'Nro. Reporte', 'Equipo', 'Operador', 'Horómetro', 'Mínimas', 'A Facturar', 'Tarifa (incluye petroleo)', 'Cobro' ]
+            let headers = [ 'Fecha', 'Obra', 'Nro. Reporte', 'Equipo', 'Operador', 'Horómetro', 'Mínimas', 'A Facturar', 'Tarifa (incluye petróleo)', 'Cobro' ]
             addExcelRow(workbook, otherInternWorksheet, headers, { isHeader: true } )
 
             let totalFacture = 0
@@ -823,7 +823,7 @@ export default {
                 addExcelRow(workbook, otherExternWorksheet, [ 'EXTERNOS' ], { isHeader: true, bordered: false } )
                 addExcelRow(workbook, otherExternWorksheet, [ `Cliente: ${client}` ], { isHeader: true, bordered: false } )
 
-                headers = [ 'Fecha', 'Obra', 'Nro. Reporte', 'Equipo', 'Operador', 'Horómetro', 'Mínimas', 'A Facturar', 'Tarifa (incluye petroleo)', 'Cobro' ]
+                headers = [ 'Fecha', 'Obra', 'Nro. Reporte', 'Equipo', 'Operador', 'Horómetro', 'Mínimas', 'A Facturar', 'Tarifa (incluye petróleo)', 'Cobro' ]
                 addExcelRow(workbook, otherExternWorksheet, headers, { isHeader: true } )
 
                 let totalFacture = 0
