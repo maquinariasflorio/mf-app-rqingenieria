@@ -320,9 +320,9 @@ export default {
                     },
                 },
             } )
-                .then( ( { data: { updateMachineryJobRegistry } } ) => {
+                .then(async( { data: { updateMachineryJobRegistry } } ) => {
 
-                    this.responseParser(updateMachineryJobRegistry.__typename, this.formData._id)
+                    await this.responseParser(updateMachineryJobRegistry.__typename, this.formData._id)
                     this.loading = false
 
                 } )
@@ -340,9 +340,6 @@ export default {
             switch (typename) {
 
                 case GraphqlTypename.OK: {
-
-                    this.$emit('save')
-                    this.$emit('input', false)
 
                     if (this.switchSignature) {
 
@@ -460,6 +457,9 @@ export default {
                         } )
 
                     }
+
+                    this.$emit('save')
+                    this.$emit('input', false)
 
                     break
 

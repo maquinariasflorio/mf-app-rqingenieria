@@ -183,6 +183,7 @@ export default {
         onEdit(item) {
 
             this.isNew = false
+            this.formData = {}
             this.formData = JSON.parse(JSON.stringify(item) )
             this.showUserForm = true
 
