@@ -791,7 +791,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                     { text: item.building, style: 'tableData' },
                     { text: item.folio, style: 'tableData' },
                     { text: item.equipment, style: 'tableData' },
-                    { text: item.operator, style: 'tableData' },
+                    { text: item.operator.trim(), style: 'tableData' },
                     { text: item.hours, style: 'tableData' },
                     { text: item.minHours, style: 'tableData' },
                     { text: item.toFacture, style: 'tableData' },
@@ -806,7 +806,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                 layout : 'mfFullBorderedLayout',
                 table  : {
                     headerRows : 1,
-                    widths     : [ 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto' ],
+                    widths     : [ 'auto', '*', 'auto', 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto' ],
 
                     body: [
                         [
@@ -935,7 +935,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                         { text: item.building, style: 'tableData' },
                         { text: item.folio, style: 'tableData' },
                         { text: item.equipment, style: 'tableData' },
-                        { text: item.operator, style: 'tableData' },
+                        { text: item.operator.trim(), style: 'tableData' },
                         { text: item.workingDayType, style: 'tableData' },
                         { text: item.amountPerUse, style: 'tableData' },
                         { text: item.volume, style: 'tableData' },
@@ -953,7 +953,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                     layout : 'mfFullBorderedLayout',
                     table  : {
                         headerRows : 1,
-                        widths     : [ 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto' ],
+                        widths     : [ 'auto', '*', 'auto', 'auto', '*', 'auto', 'auto', 'auto', 'auto' ],
 
                         body: [
                             [
@@ -1067,7 +1067,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                         { text: item.building, style: 'tableData' },
                         { text: item.folio, style: 'tableData' },
                         { text: item.equipment, style: 'tableData' },
-                        { text: item.operator, style: 'tableData' },
+                        { text: item.operator.trim(), style: 'tableData' },
                         { text: item.totalTravels, style: 'tableData' },
                         { text: item.load, style: 'tableData' },
                         { text: item.amountPerUse, style: 'tableData' },
@@ -1086,7 +1086,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                     layout : 'mfFullBorderedLayout',
                     table  : {
                         headerRows : 1,
-                        widths     : [ 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto' ],
+                        widths     : [ 'auto', '*', 'auto', 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto' ],
 
                         body: [
                             [
@@ -1200,7 +1200,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                     { text: item.building, style: 'tableData' },
                     { text: item.folio, style: 'tableData' },
                     { text: item.equipment, style: 'tableData' },
-                    { text: item.operator, style: 'tableData' },
+                    { text: item.operator.trim(), style: 'tableData' },
                     { text: item.hours, style: 'tableData' },
                     { text: item.minHours, style: 'tableData' },
                     { text: item.toFacture, style: 'tableData' },
@@ -1215,7 +1215,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                 layout : 'mfFullBorderedLayout',
                 table  : {
                     headerRows : 1,
-                    widths     : [ 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto' ],
+                    widths     : [ 'auto', '*', 'auto', 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto' ],
 
                     body: [
                         [
@@ -1341,7 +1341,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                         { text: item.building, style: 'tableData' },
                         { text: item.folio, style: 'tableData' },
                         { text: item.equipment, style: 'tableData' },
-                        { text: item.operator, style: 'tableData' },
+                        { text: item.operator.trim(), style: 'tableData' },
                         { text: item.workingDayType, style: 'tableData' },
                         { text: item.amountPerUse, style: 'tableData' },
                         { text: item.volume, style: 'tableData' },
@@ -1359,7 +1359,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                     layout : 'mfFullBorderedLayout',
                     table  : {
                         headerRows : 1,
-                        widths     : [ 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto' ],
+                        widths     : [ 'auto', '*', 'auto', 'auto', '*', 'auto', 'auto', 'auto', 'auto' ],
 
                         body: [
                             [
@@ -1471,7 +1471,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                         { text: item.building, style: 'tableData' },
                         { text: item.folio, style: 'tableData' },
                         { text: item.equipment, style: 'tableData' },
-                        { text: item.operator, style: 'tableData' },
+                        { text: item.operator.trim(), style: 'tableData' },
                         { text: item.totalTravels, style: 'tableData' },
                         { text: item.load, style: 'tableData' },
                         { text: item.amountPerUse, style: 'tableData' },
@@ -1490,7 +1490,7 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                     layout : 'mfFullBorderedLayout',
                     table  : {
                         headerRows : 1,
-                        widths     : [ 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto', 'auto' ],
+                        widths     : [ 'auto', '*', 'auto', 'auto', '*', 'auto', 'auto', 'auto', 'auto', 'auto' ],
 
                         body: [
                             [

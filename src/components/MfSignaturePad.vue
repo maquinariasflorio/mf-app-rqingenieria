@@ -129,8 +129,12 @@ export default {
 
             this.signaturePad.clear()
 
-            if (value)
-                this.signaturePad.fromDataURL(value)
+            setTimeout( () => {
+
+                if (value)
+                    this.signaturePad.fromDataURL(value)
+
+            }, 100)
 
         },
 
