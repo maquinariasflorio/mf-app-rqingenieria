@@ -53,7 +53,7 @@
                               @change="onEquipmentChange"
                     />
 
-                    <v-btn color="primary" @click="step++" :disabled="loading">
+                    <v-btn color="primary" :disabled="loading" @click="step++">
                         Continuar
                     </v-btn>
 
@@ -183,11 +183,11 @@
                     />
 
 
-                    <v-btn color="primary" @click="step++" :disabled="loading">
+                    <v-btn color="primary" :disabled="loading" @click="step++">
                         Continuar
                     </v-btn>
 
-                    <v-btn text @click="step--" :disabled="loading">
+                    <v-btn text :disabled="loading" @click="step--">
                         Volver
                     </v-btn>
 
@@ -217,11 +217,11 @@
                                       :disabled="!switchSignature || loading"
                     />
 
-                    <v-btn color="primary" @click="submit" :disabled="loading">
+                    <v-btn color="primary" :disabled="loading" @click="submit">
                         Registrar
                     </v-btn>
 
-                    <v-btn text @click="step--" :disabled="loading">
+                    <v-btn text :disabled="loading" @click="step--">
                         Volver
                     </v-btn>
 
@@ -638,9 +638,9 @@ export default {
                         },
                     },
                 } )
-                    .then( ( { data: { createMachineryJobRegistry } } ) => {
+                    .then(async( { data: { createMachineryJobRegistry } } ) => {
 
-                        this.responseParser(createMachineryJobRegistry.__typename, createMachineryJobRegistry.message)
+                        await this.responseParser(createMachineryJobRegistry.__typename, createMachineryJobRegistry.message)
 
                         this.formData = {
                             ...defaultFormData,
@@ -674,8 +674,6 @@ export default {
             switch (typename) {
 
                 case GraphqlTypename.OK: {
-
-                    this.$alert(Message.MACHINERY_JOB_REGISTRY_CREATED)
 
                     if (this.switchSignature) {
 
@@ -771,6 +769,8 @@ export default {
                         } )
 
                     }
+
+                    this.$alert(Message.MACHINERY_JOB_REGISTRY_CREATED)
 
                     break
 

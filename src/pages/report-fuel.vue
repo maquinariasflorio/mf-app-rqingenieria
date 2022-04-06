@@ -366,7 +366,7 @@ export default {
 
                         const groupedFuelRegistries = getAllFuelRegistries.reduce( (acc, item) => {
 
-                            const key = item.equipment.__typename === 'InternalEquipment' ? item.equipment._id : item.equipment.name
+                            const key = item.equipment.__typename === 'InternalEquipment' ? item.equipment._id : `${item.equipment.name.trim()}|${item.operator.name.trim()}`
 
                             if (!acc[key] )
                                 acc[key] = []

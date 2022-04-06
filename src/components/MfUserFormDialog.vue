@@ -70,7 +70,7 @@
                     <mf-signature-pad v-if="showSignaturePad"
                                       ref="signaturePad"
                                       label="Firma"
-                                      :image.sync="formData.signature"
+                                      :image="formData.signature"
                                       :disabled="loading"
                                       :rules="[ v => !!v || 'La firma es requerida' ]"
                     />
