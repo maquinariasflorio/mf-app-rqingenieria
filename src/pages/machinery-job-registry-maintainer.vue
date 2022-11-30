@@ -35,6 +35,10 @@
                 {{ item.signature ? 'Si' : 'No' }}
             </template>
 
+            <template #[`item.totalHours`]="{ item }">
+                {{ item.totalHours ? numeral(item.totalHours).format('0[.]0') : '' }}
+            </template>
+
             <template #[`item.actions`]="{ item }">
                 <v-btn v-if="!item.signature" icon color="primary" @click="onEdit(item)">
                     <v-icon>mdi-pencil</v-icon>
@@ -45,6 +49,13 @@
                 </v-btn>
             </template>
 
+
+            <!--FOOTER-->
+            <template #[`footer.prepend`]>
+                <v-btn color="primary" small :disabled="!hasNext || $apollo.queries.jobRegistries.loading || deleteLoading" @click="onLoadMore">
+                    Cargar más datos
+                </v-btn>
+            </template>
         </v-data-table>
 
 
@@ -67,78 +78,249 @@ import { Error } from './../static/errors'
 import { Message } from './../static/messages'
 import { GraphqlTypename } from './../static/errors/graphql_typename'
 import { MaintenanceClasses, MachineryTypes } from './../components/MfEquipmentFormDialog'
+import numeral from 'numeral'
+import 'numeral/locales/en-au'
+
+numeral.locale('en-au')
 
 export default {
     apollo: {
         jobRegistries: {
-            query: gql`query getAllMachineryJobRegistryByUser($user: String){
-                getAllMachineryJobRegistryByUser(user: $user) {
-                    _id,
-                    date,
-                    startHourmeter,
-                    endHourmeter,
-                    totalHours,
-                    signature,
-                    totalTravels,
-                    machineryType,
-                    workCondition,
-                    load,
-                    machineryType,
-                    client {
+            query: gql`query getAllMachineryJobRegistryByUser($user: String, $next: String){
+                getAllMachineryJobRegistryByUser(user: $user, next: $next) {
+                    results {
                         _id,
-                        name,
-                        billing {
-                            rut,
-                        }
-                    },
-                    executor {
-                        _id,
-                        rut,
-                        name,
-                        role,
-                    },
-                    building,
-                    bookingWorkCondition,
-                    workingDayType,
-                    observations,
-                    equipment {
-                        __typename,
-                        ...on ExternalEquipment {
-                            name,
-                        },
-                        ...on InternalEquipment {
+                        date,
+                        startHourmeter,
+                        endHourmeter,
+                        totalHours,
+                        signature,
+                        totalTravels,
+                        machineryType,
+                        workCondition,
+                        load,
+                        machineryType,
+                        client {
                             _id,
-                            code,
                             name,
+                            billing {
+                                rut,
+                            }
                         },
-                    },
-                    operator {
-                        __typename,
-                        ...on ExternalOperator {
-                            name,
-                        },
-                        ...on InternalOperator {
+                        executor {
                             _id,
                             rut,
                             name,
+                            role,
                         },
+                        building,
+                        bookingWorkCondition,
+                        workingDayType,
+                        observations,
+                        equipment {
+                            __typename,
+                            ...on ExternalEquipment {
+                                name,
+                            },
+                            ...on InternalEquipment {
+                                _id,
+                                code,
+                                name,
+                            },
+                        },
+                        operator {
+                            __typename,
+                            ...on ExternalOperator {
+                                name,
+                            },
+                            ...on InternalOperator {
+                                _id,
+                                rut,
+                                name,
+                            },
+                        },
+                        address,
+                        folio,
                     },
-                    address,
-                    folio,
+                    next,
+                    hasNext,
                 }
             }`,
 
-            update: (data) => data.getAllMachineryJobRegistryByUser,
+            update( { getAllMachineryJobRegistryByUser } ) {
+
+                this.next = getAllMachineryJobRegistryByUser.next
+                this.hasNext = getAllMachineryJobRegistryByUser.hasNext
+
+                return [
+                    ...this.jobRegistries || [],
+                    ...getAllMachineryJobRegistryByUser.results,
+                ]
+
+            },
 
             variables() {
 
                 return {
-                    user: this.$auth.user.role.name === 'administrator' ? undefined : this.$auth.user._id,
+                    user : this.$auth.user.role.name === 'administrator' ? undefined : this.$auth.user._id,
+                    next : this.nextPage,
                 }
 
             },
 
             fetchPolicy: 'network-only',
+
+            subscribeToMore: [
+                {
+                    document: gql`subscription {
+                        jobRegistryAdded {
+                            _id,
+                            date,
+                            startHourmeter,
+                            endHourmeter,
+                            totalHours,
+                            signature,
+                            totalTravels,
+                            machineryType,
+                            workCondition,
+                            load,
+                            machineryType,
+                            client {
+                                _id,
+                                name,
+                                billing {
+                                    rut,
+                                }
+                            },
+                            executor {
+                                _id,
+                                rut,
+                                name,
+                                role,
+                            },
+                            building,
+                            bookingWorkCondition,
+                            workingDayType,
+                            observations,
+                            equipment {
+                                __typename,
+                                ...on ExternalEquipment {
+                                    name,
+                                },
+                                ...on InternalEquipment {
+                                    _id,
+                                    code,
+                                    name,
+                                },
+                            },
+                            operator {
+                                __typename,
+                                ...on ExternalOperator {
+                                    name,
+                                },
+                                ...on InternalOperator {
+                                    _id,
+                                    rut,
+                                    name,
+                                },
+                            },
+                            address,
+                            folio,
+                        }
+                    }`,
+
+                    updateQuery( { getAllMachineryJobRegistryByUser }, { subscriptionData: { data: { jobRegistryAdded } } } ) {
+
+                        this.jobRegistries.unshift(jobRegistryAdded)
+
+                        return { getAllMachineryJobRegistryByUser: { results: [], next: this.next, hasNext: this.hasNext } }
+
+                    },
+                },
+
+                {
+                    document: gql`subscription {
+                        jobRegistryDeleted
+                    }`,
+
+                    updateQuery( { getAllMachineryJobRegistryByUser }, { subscriptionData: { data: { jobRegistryDeleted } } } ) {
+
+                        const registryIndex = this.jobRegistries.findIndex( (job) => job._id === jobRegistryDeleted)
+                        this.jobRegistries.splice(registryIndex, 1)
+
+                        return { getAllMachineryJobRegistryByUser: { results: [], next: this.next, hasNext: this.hasNext } }
+
+                    },
+                },
+
+                {
+                    document: gql`subscription {
+                        jobRegistryUpdated {
+                            _id,
+                            date,
+                            startHourmeter,
+                            endHourmeter,
+                            totalHours,
+                            signature,
+                            totalTravels,
+                            machineryType,
+                            workCondition,
+                            load,
+                            machineryType,
+                            client {
+                                _id,
+                                name,
+                                billing {
+                                    rut,
+                                }
+                            },
+                            executor {
+                                _id,
+                                rut,
+                                name,
+                                role,
+                            },
+                            building,
+                            bookingWorkCondition,
+                            workingDayType,
+                            observations,
+                            equipment {
+                                __typename,
+                                ...on ExternalEquipment {
+                                    name,
+                                },
+                                ...on InternalEquipment {
+                                    _id,
+                                    code,
+                                    name,
+                                },
+                            },
+                            operator {
+                                __typename,
+                                ...on ExternalOperator {
+                                    name,
+                                },
+                                ...on InternalOperator {
+                                    _id,
+                                    rut,
+                                    name,
+                                },
+                            },
+                            address,
+                            folio,
+                        }
+                    }`,
+
+                    updateQuery( { getAllMachineryJobRegistryByUser }, { subscriptionData: { data: { jobRegistryUpdated } } } ) {
+
+                        const registryIndex = this.jobRegistries.findIndex( (job) => job._id === jobRegistryUpdated._id)
+                        this.jobRegistries.splice(registryIndex, 1, jobRegistryUpdated)
+
+                        return { getAllMachineryJobRegistryByUser: { results: [], next: this.next, hasNext: this.hasNext } }
+
+                    },
+                },
+            ],
         },
     },
 
@@ -147,6 +329,11 @@ export default {
         return {
             search   : '',
             showForm : false,
+
+            next     : null,
+            hasNext  : false,
+            nextPage : null,
+            numeral,
 
             deleteLoading: false,
 
@@ -288,12 +475,9 @@ export default {
             } )
                 .then( ( { data: { deleteMachineryJobRegistry } } ) => {
 
-                    if (deleteMachineryJobRegistry.__typename === GraphqlTypename.OK) {
-
+                    if (deleteMachineryJobRegistry.__typename === GraphqlTypename.OK)
                         this.$alert(Message.MACHINERY_JOB_REGISTRY_DELETED)
-                        this.$apollo.queries.jobRegistries.refetch()
 
-                    }
 
                     if (deleteMachineryJobRegistry.__typename === GraphqlTypename.MACHINERY_JOB_REGISTRY_NOT_FOUND)
                         this.$alert(Error.UNKNOWN_MACHINERY_JOB_REGISTRY, 'error')
@@ -313,18 +497,17 @@ export default {
 
         onSave(error) {
 
-            if (error) {
-
+            if (error)
                 this.$alert(error, 'error')
-
-            }
-            else {
-
+            else
                 this.$alert(Message.EQUIPMENT_UPDATED)
 
-                this.$apollo.queries.jobRegistries.refetch()
+        },
 
-            }
+        onLoadMore() {
+
+            if (this.hasNext)
+                this.nextPage = this.next
 
         },
     },
