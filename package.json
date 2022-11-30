@@ -1,6 +1,6 @@
 {
     "name": "rq-app",
-    "version": "1.4.15",
+    "version": "1.5.0",
     "private": true,
     "scripts": {
         "dev": "sh dev.sh",
@@ -46,6 +46,8 @@
         "eslint-plugin-vue": "^8.2.0",
         "jest": "^27.0.5",
         "sass-loader": "10.1.1",
-        "vue-jest": "^3.0.4"
+        "ts-node": "^10.9.1",
+        "vue-jest": "^3.0.4",
+        "typescript": "^4.3.5"
     }
 }
