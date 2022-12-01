@@ -115,15 +115,17 @@ export default {
                 this.$apollo.query( {
                     query: gql`query getAllMachineryJobRegistryByUserAndDate($user: String!, $startDate: String!, $endDate: String!) {
                         getAllMachineryJobRegistryByUserAndDate(user: $user, startDate: $startDate, endDate: $endDate) {
-                            _id,
-                            startHourmeter,
-                            endHourmeter,
-                            date,
-                            totalHours,
-                            machineryType,
-                            executor {
-                                rut,
-                                name,
+                            results {
+                                _id,
+                                startHourmeter,
+                                endHourmeter,
+                                date,
+                                totalHours,
+                                machineryType,
+                                executor {
+                                    rut,
+                                    name,
+                                }
                             }
                         }
                     }`,
@@ -136,7 +138,7 @@ export default {
                 } )
                     .then( ( { data: { getAllMachineryJobRegistryByUserAndDate } } ) => {
 
-                        this.generateExcelFile(getAllMachineryJobRegistryByUserAndDate)
+                        this.generateExcelFile(getAllMachineryJobRegistryByUserAndDate.results)
                         this.loading = false
 
                     } )
