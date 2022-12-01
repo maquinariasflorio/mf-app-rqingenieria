@@ -64,65 +64,67 @@ export default {
         machineryJobRegistries: {
             query: gql`query getAllMachineryJobRegistryByDate($date: String!) {
                 getAllMachineryJobRegistryByDate(date: $date) {
-                    _id,
-                    equipment {
-                        __typename,
-                        ...on InternalEquipment {
-                            _id,
-                            code,
-                            name,
-                            volume,
+                    results {
+                        _id,
+                        equipment {
+                            __typename,
+                            ...on InternalEquipment {
+                                _id,
+                                code,
+                                name,
+                                volume,
+                            },
+                            ...on ExternalEquipment {
+                                name,
+                                volume,
+                            }
                         },
-                        ...on ExternalEquipment {
-                            name,
-                            volume,
-                        }
-                    },
-                    date,
-                    startHourmeter,
-                    endHourmeter,
-                    totalHours,
-                    signature,
-                    totalTravels,
-                    machineryType,
-                    workCondition,
-                    load,
-                    machineryType,
-                    client {
-                        _id,
-                        name,
-                        billing {
-                            rut,
-                        }
-                    },
-                    executor {
-                        _id,
-                        rut,
-                        name,
-                        role,
+                        date,
+                        startHourmeter,
+                        endHourmeter,
+                        totalHours,
                         signature,
-                    },
-                    building,
-                    bookingWorkCondition,
-                    workingDayType,
-                    observations,
-                    folio,
-                    operator {
-                        __typename,
-                        ...on InternalOperator {
+                        totalTravels,
+                        machineryType,
+                        workCondition,
+                        load,
+                        machineryType,
+                        client {
+                            _id,
+                            name,
+                            billing {
+                                rut,
+                            }
+                        },
+                        executor {
                             _id,
                             rut,
                             name,
+                            role,
+                            signature,
                         },
-                        ...on ExternalOperator {
-                            name,
-                        }
-                    },
-                    address,
+                        building,
+                        bookingWorkCondition,
+                        workingDayType,
+                        observations,
+                        folio,
+                        operator {
+                            __typename,
+                            ...on InternalOperator {
+                                _id,
+                                rut,
+                                name,
+                            },
+                            ...on ExternalOperator {
+                                name,
+                            }
+                        },
+                        address,
+                    }
                 }
             }`,
 
-            update: (data) => data.getAllMachineryJobRegistryByDate,
+            update: (data) => data.getAllMachineryJobRegistryByDate.results,
 
             variables() {
 
