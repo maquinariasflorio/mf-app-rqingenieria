@@ -631,9 +631,9 @@ export default {
                     item.folio,
                     item.equipment,
                     item.operator,
-                    item.hours,
+                    numeral(item.hours).format('0[.]0'),
                     item.minHours,
-                    item.toFacture,
+                    numeral(item.toFacture).format('0[.]0'),
                     item.amountPerUse,
                     item.totalAmount,
                 ] )
@@ -838,9 +838,9 @@ export default {
                         item.folio,
                         item.equipment,
                         item.operator,
-                        item.hours,
+                        numeral(item.hours).format('0[.]0'),
                         item.minHours,
-                        item.toFacture,
+                        numeral(item.toFacture).format('0[.]0'),
                         item.amountPerUse,
                         item.totalAmount,
                     ] )

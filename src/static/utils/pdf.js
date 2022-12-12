@@ -641,10 +641,10 @@ export function generateDailyPayStatePdf( { title, data, date, total } ) {
                 { text: item.amounType, style: 'tableData' },
                 { text: item.load, style: 'tableData' },
                 { text: item.volume, style: 'tableData' },
-                { text: item.hours, style: 'tableData' },
+                { text: numeral(item.hours).format('0[.]0'), style: 'tableData' },
                 { text: item.minHours, style: 'tableData' },
                 { text: item.totalTravels, style: 'tableData' },
-                { text: item.toFacture, style: 'tableData' },
+                { text: numeral(item.toFacture).format('0[.]0'), style: 'tableData' },
                 { text: item.totalAmount, style: 'tableData' },
             ]
 
@@ -792,9 +792,9 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                     { text: item.folio, style: 'tableData' },
                     { text: item.equipment, style: 'tableData' },
                     { text: item.operator.trim(), style: 'tableData' },
-                    { text: item.hours, style: 'tableData' },
+                    { text: numeral(item.hours).format('0[.]0'), style: 'tableData' },
                     { text: item.minHours, style: 'tableData' },
-                    { text: item.toFacture, style: 'tableData' },
+                    { text: numeral(item.toFacture).format('0[.]0'), style: 'tableData' },
                     { text: item.amountPerUse, style: 'tableData' },
                     { text: item.totalAmount, style: 'tableData' },
                 ]
@@ -1201,9 +1201,9 @@ export function generateGeneralPayStatePdf( { title, data, client } ) {
                     { text: item.folio, style: 'tableData' },
                     { text: item.equipment, style: 'tableData' },
                     { text: item.operator.trim(), style: 'tableData' },
-                    { text: item.hours, style: 'tableData' },
+                    { text: numeral(item.hours).format('0[.]0'), style: 'tableData' },
                     { text: item.minHours, style: 'tableData' },
-                    { text: item.toFacture, style: 'tableData' },
+                    { text: numeral(item.toFacture).format('0[.]0'), style: 'tableData' },
                     { text: item.amountPerUse, style: 'tableData' },
                     { text: item.totalAmount, style: 'tableData' },
                 ]
