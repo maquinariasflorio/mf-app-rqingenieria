@@ -176,9 +176,9 @@ export default {
                                 equipment    : item.equipment.__typename === 'ExternalEquipment' ? item.equipment.name : item.equipment.code,
                                 amountPerUse : numeral(item.amountPerUse).format('$0,0'),
                                 amounType    : item.amounType,
-                                hours        : item.hours,
+                                hours        : numeral(item.hours).format('0[.]0'),
                                 minHours     : item.minHours,
-                                toFacture    : item.toFacture,
+                                toFacture    : numeral(item.toFacture).format('0[.]0'),
                                 totalAmount  : numeral(item.totalAmount).format('$0,0'),
                             }
 
